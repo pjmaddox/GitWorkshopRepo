@@ -17,14 +17,41 @@ namespace LendingGitWorkshop
         }
 
         public void Run()
-        {   
-            //TODO: make a number of grids using the injected grid creator
+        {
+            //make a number of grids using the injected grid creator
+            var grids = _gridCreator.CreateRandomNumberOfRandomGrids(15,1,1,20);
 
-            //TODO: have user enter a vertex
+            //have user enter a vertex
+            Console.WriteLine("Grids Created!");
 
-            //TODO: for each grid, output the vertex closest to the user input in the grid
+            Console.WriteLine("Please enter the X-Value of a point in 2D space (default limit -50.0,50.0):");
+            double xVal = Convert.ToDouble(Console.ReadLine());
+            
 
-            //TODO: wait for user input before closing
+            Console.WriteLine("Please enter the Y-Value of a point in 2D space (default limit -50,50):");
+            double yVal = Convert.ToDouble(Console.ReadLine());
+
+            //for each grid, output the vertex closest to the user input in the grid
+            Grid resultGrid = null;
+            Vertex resultVert = null;
+            double currentMinDistance = double.MaxValue;
+            foreach (Grid gx in grids)
+            {
+                var currentClosestVert = gx.GetClosestVertexTo(xVal, yVal);
+                var currentDistance = currentClosestVert.DistanceFromLocation(xVal, yVal);
+
+                if (currentDistance < currentMinDistance)
+                {
+                    currentMinDistance = currentDistance;
+                    resultVert = currentClosestVert;
+                    resultGrid = gx;
+                }
+            }
+
+            //output the id of the grid that has the closest point to the user input
+            Console.WriteLine(String.Format("Closest vertex to ({0},{1}) is Vertex-{2} from Grid-{5} located at ({3},{4}).",xVal,yVal,resultVert.Id,resultVert.XValue,resultVert.YValue,resultGrid.Id));
+
+            Console.ReadLine();
         }
     }
 }

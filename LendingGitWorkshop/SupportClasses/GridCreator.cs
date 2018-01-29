@@ -8,23 +8,33 @@ namespace SupportClasses
 {
     public class GridCreator : IGridCreator
     {
-        public Grid CreateRandomGrid()
+        public Grid CreateRandomGrid(int min = 0, int max = 15, int id = 0)
         {
-            /*You can create your own solution for this here, 
-                or you can wait and you will be provided with one!*/
-            //TODO: Solution Here!
+            var rand = new Random();
+            var numVertices = rand.Next(min, max);
+
+            var verts = new List<Vertex>();
+
+            for (int i = 0; i < numVertices; ++i)
+            {
+                verts.Add(new Vertex(i, rand.Next(-50, 50), rand.Next(-50, 50)));
+            }
+
+            return new Grid(verts, id);
         }
 
-        public IEnumerable<Grid> CreateRandomNumberOfRandomGrids(int minNumberGrids, int maxNumberGrids)
+        public IEnumerable<Grid> CreateRandomNumberOfRandomGrids(int maxNumberGrids = 1, int minNumberGrids = 1, int minSize = 0, int maxSize = 15)
         {
-            var thing = new Random();
-            var numberOfGridsToCreate = thing.Next(minNumberGrids, maxNumberGrids);
+            var rand = new Random();
+            var numberOfGridsToCreate = rand.Next(minNumberGrids, maxNumberGrids);
             var resultGrids = new List<Grid>();
 
             for(int i = 0; i < numberOfGridsToCreate; ++i)
             {
-
+                resultGrids.Add(CreateRandomGrid(1,15,i));
             }
+
+            return resultGrids;
         }
     }
 }
