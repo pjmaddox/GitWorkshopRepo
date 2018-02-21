@@ -19,7 +19,7 @@ namespace LendingGitWorkshop
         public void Run()
         {
             //TODO: Output a greeting, log, or friendly hello!
-            Console.WriteLine;
+            Console.WriteLine("This is a mean and terrible output message instead of whatever you put. In fact this isn't output; this is an output-down. Patrick smells.");
 
             //TODO: make a number of grids using the injected grid creator
 
