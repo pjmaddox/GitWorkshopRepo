@@ -17,7 +17,10 @@ namespace LendingGitWorkshop
         }
 
         public void Run()
-        {   
+        {
+            //TODO: Output a greeting, log, or friendly hello!
+            Console.WriteLine;
+
             //TODO: make a number of grids using the injected grid creator
 
             //TODO: have user enter a vertex
